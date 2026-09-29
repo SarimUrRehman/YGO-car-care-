@@ -1,0 +1,6 @@
+{
+  "name": "YGO Detailing — Luxury Automotive Detailing & Concierge Booking",
+  "description": "Premium car detailing, multi-stage paint correction, and ceramic coating in the 209 Area, California. Book studio or mobile detailing online.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

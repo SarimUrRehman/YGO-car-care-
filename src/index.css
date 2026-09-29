@@ -1,0 +1,187 @@
+@import "tailwindcss";
+
+:root {
+  --bg-pure-black: #000000;
+  --bg-deep-black: #0A0A0A;
+  --bg-charcoal: #141414;
+  --bg-card: #1C1C1C;
+  --brand-crimson: #A50F1B;
+  --brand-crimson-hover: #D91E2E;
+  --brand-crimson-dark: #5E0A10;
+  --text-offwhite: #F3EFE8;
+  --text-muted: #9A9A9F;
+  --accent-silver: #C9CCD1;
+  --accent-gold: #E8B84A;
+
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-serif-accent: 'Playfair Display', serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-body);
+    background-color: var(--bg-deep-black);
+    color: var(--text-offwhite);
+    scroll-behavior: smooth;
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: var(--font-display);
+    letter-spacing: 0.06em;
+    text-wrap: balance;
+  }
+
+  .font-retro {
+    font-family: var(--font-serif-accent);
+  }
+
+  .font-mono-tabular {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Custom Crimson & Obsidian Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-deep-black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--brand-crimson-dark);
+  border-radius: 2px;
+  border: 1px solid rgba(201, 204, 209, 0.12);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--brand-crimson-hover);
+}
+
+/* Chrome / Metallic Headline Gradient */
+.text-chrome {
+  background: linear-gradient(180deg, #FFFFFF 0%, #F3EFE8 45%, #C9CCD1 75%, #9A9A9F 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-crimson-chrome {
+  background: linear-gradient(135deg, #F3EFE8 0%, #D91E2E 55%, #A50F1B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Animated Hero Light Sweep / Automotive Paint Shine */
+@keyframes heroLightSweep {
+  0% {
+    transform: translateX(-120%) skewX(-25deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.55;
+  }
+  50% {
+    transform: translateX(140%) skewX(-25deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(140%) skewX(-25deg);
+    opacity: 0;
+  }
+}
+
+.hero-shine-sweep {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-shine-sweep::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 65%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(243, 239, 232, 0.03) 35%,
+    rgba(217, 30, 46, 0.16) 50%,
+    rgba(243, 239, 232, 0.08) 65%,
+    transparent 100%
+  );
+  animation: heroLightSweep 7s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  pointer-events: none;
+}
+
+/* Glossy Button / Card Hover Shine Sweep */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shine::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    rgba(243, 239, 232, 0.25) 50%,
+    transparent 100%
+  );
+  transform: skewX(-20deg);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.btn-shine:hover::before {
+  transform: translateX(380%) skewX(-20deg);
+}
+
+/* Infinite Marquee Animation */
+@keyframes marqueeScroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 34s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Respect Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .hero-shine-sweep::after {
+    display: none !important;
+  }
+  .animate-marquee {
+    animation: none !important;
+  }
+}
+
